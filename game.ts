@@ -1,8 +1,7 @@
 basic.showString("ESCAPE")
 radio.setTransmitPower(7)
-radio.onReceivedBuffer(b => {
+escape.onMessageReceived((msg, data) => {
     led.toggle(0, 0)
-    escape.logMessage(b);
 })
 input.onButtonPressed(Button.A, function () {
     escape.broadcastMessage(escape.REMOVE_MINUTE)
