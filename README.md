@@ -1,6 +1,12 @@
 # pxt-escape-game-master ![Build status badge](https://github.com/pelikhan/pxt-escape-game-master/workflows/MakeCode/badge.svg)
 
+The game master is used to remote control the 
+[escape](https://github.com/pelikhan/pxt-escape-game-master) room.
 
+* press A to remove a minute,
+* press B to add a minute
+* press AB to reset!!!
+* all messages are logged to the console
 
 ## Use this extension
 
