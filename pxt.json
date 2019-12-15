@@ -2,15 +2,16 @@
     "name": "escape-game-master",
     "dependencies": {
         "core": "*",
-        "radio": "*"
+        "radio": "*",
+        "escape": "github:pelikhan/pxt-escape#master"
     },
     "description": "",
     "files": [
-        "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "game.ts"
     ],
-    "preferredEditor": "blocksprj",
+    "preferredEditor": "tsprj",
     "testFiles": [
         "test.ts"
     ]
