@@ -26,6 +26,7 @@ input.onButtonPressed(Button.AB, function () {
     }
     basic.showIcon(IconNames.Chessboard)
     basic.clearScreen()
+    info()
 })
 
 
@@ -47,3 +48,10 @@ basic.forever(function () {
     }
     basic.pause(500)
 })
+
+function info() {
+    console.log(`ESCAPE game master`)
+    console.log(`game time ${(escape.TOTAL_SECONDS / 60) | 0} minutes`)
+    console.log(`codes ${escape.CODES.map(k => k.toString()).join(', ')}`)
+}
+info()
