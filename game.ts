@@ -2,7 +2,7 @@ radio.setTransmitPower(7)
 basic.showString("ESCAPE")
 
 // disable default handler
-let start = input.runningTime()
+let startMs = input.runningTime()
 let totalSec = escape.TOTAL_SECONDS
 let remaining = totalSec
 
@@ -29,22 +29,15 @@ input.onButtonPressed(Button.AB, function () {
     info()
 })
 
-
 // game loop
 basic.forever(function () {
-    const elapsed = (input.runningTime() - start) / 1000;
-    remaining = Math.max(0, totalSec - elapsed); // seconds
+    const elapsed = (input.runningTime() - startMs) / 1000; 
+    remaining = Math.max(0, totalSec - elapsed) | 0; // seconds
 
-    const b = control.createBuffer(5);
-    b[0] = escape.REMAINING_SECONDS;
-    b.setNumber(NumberFormat.Int32LE, 1, remaining | 0);
-    radio.sendBuffer(b);
-
+    escape.broadcastMessageNumber(escape.REMAINING_SECONDS, remaining)
     if (remaining <= 0) {
         basic.pause(10)
-        const bo = pins.createBuffer(1)
-        bo[0] = escape.TIME_OVER
-        radio.sendBuffer(bo)
+        escape.broadcastMessage(escape.TIME_OVER)
     }
     basic.pause(500)
 })
@@ -52,6 +45,7 @@ basic.forever(function () {
 function info() {
     console.log(`ESCAPE game master`)
     console.log(`game time ${(escape.TOTAL_SECONDS / 60) | 0} minutes`)
+    console.log(`remaining ${remaining} seconds`)
     console.log(`codes ${escape.CODES.map(k => k.toString()).join(', ')}`)
 }
 info()
